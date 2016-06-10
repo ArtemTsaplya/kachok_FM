@@ -8,6 +8,8 @@
     <h1>Radio ${key}</h1>
         <form action="MyServlet.java" method="get">
             <input class="button" type="submit" value="Play"/>
+        </form>
+        <form action="MyServlet.java" method="post">
             <input class="button" type="submit" value="Stop"/>
         </form>
     </body>

@@ -1,13 +1,7 @@
-package web;
+package web.api;
 
-import java.awt.BorderLayout;
-import java.awt.Canvas;
-import java.awt.Frame;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.util.ArrayList;
-import java.util.List;
-
+import com.sun.jna.Native;
+import com.sun.jna.NativeLibrary;
 import uk.co.caprica.vlcj.binding.LibVlc;
 import uk.co.caprica.vlcj.component.EmbeddedMediaPlayerComponent;
 import uk.co.caprica.vlcj.player.MediaPlayerFactory;
@@ -15,8 +9,9 @@ import uk.co.caprica.vlcj.player.embedded.EmbeddedMediaPlayer;
 import uk.co.caprica.vlcj.runtime.RuntimeUtil;
 import uk.co.caprica.vlcj.runtime.x.LibXUtil;
 
-import com.sun.jna.Native;
-import com.sun.jna.NativeLibrary;
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class PlayerAPI {
@@ -29,7 +24,6 @@ public class PlayerAPI {
      */
     public void play(final String filename) {
         final Canvas videoSurface = new Canvas();
-        final Frame frame = buildFrame(videoSurface);
         final List<String> vlcArgs = new ArrayList<String>();
         configureParameters(vlcArgs);
         final EmbeddedMediaPlayer mediaPlayer = createPlayer(vlcArgs, videoSurface);
@@ -45,23 +39,6 @@ public class PlayerAPI {
         LibXUtil.initialise();
     }
 
-    /**
-     * Criate the frame where movie will be played
-     */
-    private Frame buildFrame(final Canvas videoSurface) {
-        final Frame f = new Frame("Player");
-        f.setSize(800, 600);
-        f.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                System.exit(0);
-            }
-        });
-        f.setLayout(new BorderLayout());
-        f.add(videoSurface, BorderLayout.CENTER);
-        f.setVisible(true);
-        return f;
-    }
 
     /**
      * Configure VLC parameters
