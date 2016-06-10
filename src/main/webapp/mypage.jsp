@@ -5,15 +5,10 @@
     </head>
 <%--JSTL DO NOT USE!!!!!--%>
     <body>
-        <h1>Radio ${key}</h1>
-        <form action="MyServlet.java" method="post">
+    <h1>Radio ${key}</h1>
+        <form action="MyServlet.java" method="get">
             <input class="button" type="submit" value="Play"/>
             <input class="button" type="submit" value="Stop"/>
         </form>
-        <%--<form>--%>
-            <%--<button>--%>
-                <%--<b>Play</b>--%>
-            <%--</button>--%>
-        <%--</form>>--%>
     </body>
 </html>

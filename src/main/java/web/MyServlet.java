@@ -9,18 +9,13 @@ import java.io.IOException;
 
 @WebServlet("/")
 public class MyServlet extends HttpServlet {
+    private AudioFile audioFile = new AudioFile();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setAttribute("key", "kachok");
-        req.getRequestDispatcher("mypage.jsp").forward(req, resp);  // метод - forward, перенапрявляет наши запросы на .jsp страницу
+        req.getRequestDispatcher("mypage.jsp").forward(req, resp);
+        audioFile.playAudio();
     }
 
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
-        AudioFile audioFile = new AudioFile();
-        audioFile.playAudio();
-        audioFile.stopAudio();
-    }
 }
